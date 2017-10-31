@@ -1,0 +1,12 @@
+.nav {
+  margin: 1rem;
+  border: 1px solid #ccc;
+}
+
+.nav-item {
+  border-left: 1px solid #ccc;
+}
+
+.nav-item:hover {
+  background: #eee;
+}
