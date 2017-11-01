@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CreateSpeechFormComponent } from './create-speech-form.component';
+import { SpeechListComponent } from './speech-list.component';
 
-describe('CreateSpeechFormComponent', () => {
-  let component: CreateSpeechFormComponent;
-  let fixture: ComponentFixture<CreateSpeechFormComponent>;
+describe('SpeechListComponent', () => {
+  let component: SpeechListComponent;
+  let fixture: ComponentFixture<SpeechListComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CreateSpeechFormComponent ]
+      declarations: [ SpeechListComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(CreateSpeechFormComponent);
+    fixture = TestBed.createComponent(SpeechListComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

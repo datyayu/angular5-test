@@ -1,4 +1,34 @@
-<form class="speech-form-container" #speechForm="ngForm">
+<!-- Modal -->
+<ng-template #content let-c="close" let-d="dismiss" >
+  <div class="modal-header">
+    <h4 class="modal-title">Share email</h4>
+
+    <button type="button" class="close" aria-label="Close" (click)="d()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+
+  <div class="modal-body">
+    <form>
+      <div class="form-group">
+        <label for="shareEmail" class="form-control-label">Share to this email:</label>
+        <input
+          type="email"
+          class="form-control"
+          name="shareEmail"
+          id="shareEmail"
+        />
+      </div>
+
+      <button type="submit" class="btn btn-outline-dark" (click)="onShare(); c()">
+        Send
+      </button>
+    </form>
+  </div>
+</ng-template>
+
+
+<form class="speech-form-container" #speechForm="ngForm" *ngIf="speech">
 <!-- Title -->
   <div class="form-group">
     <label for="title">Title</label>
@@ -86,8 +116,29 @@
   </div>
 
   <div class="d-flex justify-content-end">
-    <button class="btn btn-primary" *ngIf="!isNew" >Delete</button>
-    <button type="submit" class="btn btn-primary ml-2" (click)="onSave($event)" [disabled]="!speechForm.valid">Save</button>
-    <button class="btn btn-primary ml-2 mr-2" *ngIf="!isNew">Share</button>
+    <button
+      class="btn btn-primary"
+      *ngIf="!isNew"
+      (click)="onDelete($event)"
+    >
+      Delete
+    </button>
+
+    <button
+      type="submit"
+      class="btn btn-primary ml-2"
+      [disabled]="!speechForm.valid"
+      (click)="onSave($event)"
+    >
+      Save
+    </button>
+
+    <button
+      class="btn btn-primary ml-2 mr-2"
+      *ngIf="!isNew"
+      (click)="openModal(content)"
+    >
+      Share
+    </button>
   </div>
 </form>

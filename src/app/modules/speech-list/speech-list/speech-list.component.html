@@ -1,0 +1,10 @@
+<ul class="list-group">
+  <li
+    class="list-group-item list-group-item-action"
+    *ngFor="let speech of speeches"
+    [ngClass]="{ 'active': speech.id === selectedSpeech }"
+    (click)="onClick(speech.id)"
+  >
+    {{speech.title}}
+  </li>
+</ul>

@@ -1,3 +1,4 @@
+import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 import * as uuid from 'uuid/v4'
 
@@ -9,6 +10,16 @@ const SPEECH_KEY_PREFIX = 'SPEECH';
 
 @Injectable()
 export class SpeechStorageService {
+  /**
+   * Remove a speech from local storage.
+   *
+   * @param speechId Speech id to remove.
+   */
+  deleteSpeech(speechId: string): void {
+    const key = `${SPEECH_KEY_PREFIX}-${speechId}`;
+    localStorage.removeItem(key);
+  }
+
   /**
    * Get all speeches stored in local storage.
    *
@@ -47,15 +58,15 @@ export class SpeechStorageService {
    * @return Stored speech id.
    */
   saveSpeech(speech: Speech): string {
-    const randomId = uuid();
-    const key = `${SPEECH_KEY_PREFIX}-${randomId}`;
+    const speechId = speech.id || uuid();
+    const key = `${SPEECH_KEY_PREFIX}-${speechId}`;
     const item = JSON.stringify({
       ...speech,
-      id: randomId
+      id: speechId
     });
 
     localStorage.setItem(key, item);
 
-    return randomId;
+    return speechId;
   }
 }

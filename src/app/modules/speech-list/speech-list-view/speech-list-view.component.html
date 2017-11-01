@@ -1,0 +1,44 @@
+<div *ngIf="alert === 'updated'"
+  class="alert alert-success mx-3"
+  role="alert"
+  (click)="hideAlert()"
+>
+  <strong>Speech updated!</strong>
+</div>
+
+<div *ngIf="alert === 'deleted'"
+  class="alert alert-danger mx-3"
+  role="alert"
+  (click)="hideAlert()"
+>
+  <strong>Speech deleted!</strong>
+</div>
+
+<div *ngIf="alert === 'shared'"
+  class="alert alert-success mx-3"
+  role="alert"
+  (click)="hideAlert()"
+>
+  <strong>Speech shared!</strong>
+</div>
+
+<h2 *ngIf="speeches.length === 0" class="w-100 text-center"> No speeches found. </h2>
+
+<div class="d-flex justify-content-between mx-3">
+  <div style="width: 30%;">
+    <speech-list
+      [speeches]="speeches"
+      [selectedSpeech]="selectedSpeech && selectedSpeech.id"
+      (itemclick)="onSpeechSelect($event)"
+    ></speech-list>
+  </div>
+  <div style="width: 65%;">
+    <speech-form
+      isNew
+      [speech]="selectedSpeech"
+      (save)="onSpeechUpdate($event)"
+      (delete)="onSpeechDelete($event)"
+      (share)="onSpeechShare($event)"
+    ></speech-form>
+  </div>
+</div>

@@ -1,7 +1,9 @@
 import { Route } from '@angular/router';
-import { CreateSpeechView } from './modules';
+import { CreateSpeechView, SpeechListView } from './modules';
 
 
 export const routes: Route[] = [
-  { path: 'new', component: CreateSpeechView }
+  { path: 'all', component: SpeechListView },
+  { path: 'new', component: CreateSpeechView },
+  { path: '**', redirectTo: 'all' }
 ];
