@@ -1,4 +1,8 @@
+import 'rxjs/add/observable/from';
+import 'rxjs/add/operator/map';
 import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { Observable } from 'rxjs/Observable';
 
 import { SpeechStorageService } from '../../../services';
 import { Speech } from '../../../types';
@@ -10,15 +14,30 @@ import { Speech } from '../../../types';
   styleUrls: ['./speech-list-view.component.css']
 })
 export class SpeechListViewComponent implements OnInit {
-  speeches: Speech[] = [];
+  speeches$: Observable<Speech[]> = Observable.from([]);
   selectedSpeech?: Speech = undefined;
   alert?: string = '';
 
 
-  constructor(private speechStorageService: SpeechStorageService) { }
+  constructor(
+    private speechStorageService: SpeechStorageService,
+    private route: ActivatedRoute,
+    private router: Router
+  ) {
+
+  }
 
   ngOnInit() {
-    this.speeches = this.speechStorageService.getAllSpeeches();
+    this.speeches$ = this.route.paramMap
+      .map((params: ParamMap) => {
+        const selectedId = params.get('id');
+
+        if (selectedId) {
+          this.selectedSpeech = this.speechStorageService.getSpeechById(selectedId);
+        }
+
+        return this.speechStorageService.getAllSpeeches();
+      });
   }
 
 
@@ -26,24 +45,21 @@ export class SpeechListViewComponent implements OnInit {
     this.alert = '';
   }
 
-  onSpeechSelect(id: string) {
-    const speech = this.speeches.find(sp => sp.id === id);
-
-    this.selectedSpeech = speech;
-    this.alert = '';
-  }
-
   onSpeechUpdate(speech: Speech) {
     this.speechStorageService.saveSpeech(speech);
     this.alert = 'updated';
+
+    this.speeches$ = this.speeches$.map(x => x);
   }
 
   onSpeechDelete(speech: Speech) {
-    this.speeches = this.speeches.filter(sp => sp.id !== speech.id);
     this.speechStorageService.deleteSpeech(speech.id);
 
     this.selectedSpeech = undefined;
     this.alert = 'deleted';
+    this.router.navigateByUrl('/all');
+
+    this.speeches$ = this.speeches$.map(x => x);
   }
 
   onSpeechShare() {

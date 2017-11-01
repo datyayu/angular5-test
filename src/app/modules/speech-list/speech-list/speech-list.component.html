@@ -1,10 +1,11 @@
 <ul class="list-group">
-  <li
+  <a
     class="list-group-item list-group-item-action"
     *ngFor="let speech of speeches"
     [ngClass]="{ 'active': speech.id === selectedSpeech }"
     (click)="onClick(speech.id)"
+    [routerLink]="'/speeches/' + speech.id"
   >
     {{speech.title}}
-  </li>
+  </a>
 </ul>

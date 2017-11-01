@@ -22,14 +22,13 @@
   <strong>Speech shared!</strong>
 </div>
 
-<h2 *ngIf="speeches.length === 0" class="w-100 text-center"> No speeches found. </h2>
+<h2 *ngIf="(speeches$ | async).length === 0" class="w-100 text-cent(er"> No $ | async) found. </h2>
 
 <div class="d-flex justify-content-between mx-3">
   <div style="width: 30%;">
     <speech-list
-      [speeches]="speeches"
+      [speeches]="speeches$ | async"
       [selectedSpeech]="selectedSpeech && selectedSpeech.id"
-      (itemclick)="onSpeechSelect($event)"
     ></speech-list>
   </div>
   <div style="width: 65%;">

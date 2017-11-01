@@ -3,7 +3,8 @@ import { CreateSpeechView, SpeechListView } from './modules';
 
 
 export const routes: Route[] = [
-  { path: 'all', component: SpeechListView },
+  { path: 'speeches', component: SpeechListView },
+  { path: 'speeches/:id', component: SpeechListView },
   { path: 'new', component: CreateSpeechView },
-  { path: '**', redirectTo: 'all' }
+  { path: '**', redirectTo: 'speeches' }
 ];
