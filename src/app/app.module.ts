@@ -1,24 +1,26 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
+import { modules } from './modules';
+import { services } from './services';
+import { routes } from './app.routes';
 import { AppComponent } from './app.component';
-import { NavigationModule } from './navigation/navigation.module';
-import { NavbarComponent } from './navigation/navbar/navbar.component';
+
 
 @NgModule({
-  declarations: [
-    AppComponent
+  bootstrap: [AppComponent],
+  declarations: [AppComponent],
+  providers: [
+    ...services
   ],
   imports: [
-    // System modules
     BrowserModule,
-    RouterModule.forRoot([]),
+    RouterModule.forRoot(routes),
+    NgbModule.forRoot(),
 
-    // App modules
-    NavigationModule
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
+    ...modules // App modules
+  ]
 })
 export class AppModule { }

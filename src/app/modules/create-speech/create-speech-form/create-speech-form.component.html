@@ -1,0 +1,93 @@
+<form class="speech-form-container" #speechForm="ngForm">
+<!-- Title -->
+  <div class="form-group">
+    <label for="title">Title</label>
+    <input
+      type="text"
+      name="title"
+      id="title"
+      class="form-control"
+      required
+      placeholder="Speech title"
+      [(ngModel)]="speech.title"
+      #title="ngModel"
+    >
+    <div [hidden]="title.valid || text.pristine" class="alert alert-danger">
+      Title is required
+    </div>
+  </div>
+
+<!-- Content -->
+  <div class="form-group">
+    <label for="text">Content</label>
+    <textarea
+      name="text"
+      id="text"
+      class="form-control speech-form-textarea"
+      required
+      placeholder="Speech content"
+      [(ngModel)]="speech.text"
+      #text="ngModel"
+    ></textarea>
+    <div [hidden]="text.valid || text.pristine" class="alert alert-danger">
+      Content is required
+    </div>
+  </div>
+
+  <div class="d-flex justify-content-between">
+  <!-- Author -->
+    <div class="form-group w-50">
+      <input
+        type="text"
+        name="author"
+        id="author"
+        class="form-control"
+        required
+        placeholder="Author"
+        [(ngModel)]="speech.author"
+        #author="ngModel"
+      >
+      <div [hidden]="author.valid || author.pristine" class="alert alert-danger">
+        Author is required
+      </div>
+    </div>
+
+  <!-- Keywords -->
+    <div class="form-group w-50">
+      <input
+        type="text"
+        name="keywords"
+        id="keywords"
+        class="form-control"
+        required
+        placeholder="keywords"
+        [(ngModel)]="speech.keywords"
+        #keywords="ngModel"
+      >
+    </div>
+
+  <!-- Date -->
+    <div class="form-group w-50">
+      <div class="input-group">
+        <input
+          class="form-control"
+          placeholder="yyyy-mm-dd"
+          name="date"
+          [(ngModel)]="speech.date" n
+          ngbDatepicker
+          required
+          #d="ngbDatepicker"
+        >
+        <button class="input-group-addon" (click)="d.toggle()" type="button">
+          <img src="/assets/calendar-icon.svg" style="width: 1.2rem; height: 1rem; cursor: pointer;"/>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="d-flex justify-content-end">
+    <button class="btn btn-primary" *ngIf="!isNew" >Delete</button>
+    <button type="submit" class="btn btn-primary ml-2" (click)="onSave($event)" [disabled]="!speechForm.valid">Save</button>
+    <button class="btn btn-primary ml-2 mr-2" *ngIf="!isNew">Share</button>
+  </div>
+</form>

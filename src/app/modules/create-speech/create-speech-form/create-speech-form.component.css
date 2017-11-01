@@ -1,0 +1,12 @@
+:host::ng-deep ngb-datepicker {
+  right: 0;
+  left: auto !important;
+}
+
+.speech-form-container {
+  text-align: left;
+}
+
+.speech-form-textarea {
+  min-height: 10rem;
+}
