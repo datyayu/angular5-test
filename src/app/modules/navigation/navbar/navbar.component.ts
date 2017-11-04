@@ -8,7 +8,7 @@ import { NavigationLink } from '../navigation.types';
 })
 export class NavbarComponent {
   links = [
-    {url: '/all', text: 'View all speeches'},
+    {url: '/speeches', text: 'View all speeches'},
     {url: '/new', text: 'Add new speech'},
     {url: '/search', text: 'Search speeches'},
   ];

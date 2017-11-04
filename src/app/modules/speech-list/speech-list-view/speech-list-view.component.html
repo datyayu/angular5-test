@@ -24,15 +24,15 @@
 
 <h2 *ngIf="(speeches$ | async).length === 0" class="w-100 text-cent(er"> No speeches found. </h2>
 
-<div class="d-flex justify-content-between mx-3">
-  <div style="width: 30%;">
+<div class="d-flex flex-column flex-md-row justify-content-between mx-3">
+  <div class="w-100 mr-3">
     <speech-list
       [speeches]="speeches$ | async"
       [selectedSpeech]="selectedSpeech && selectedSpeech.id"
     ></speech-list>
   </div>
 
-  <div style="width: 65%;">
+  <div class="w-100" style="min-width: 65%;">
     <h2 *ngIf="hasId && !selectedSpeech">
       Speech not found.
     </h2>

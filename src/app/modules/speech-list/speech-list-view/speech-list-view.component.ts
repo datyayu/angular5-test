@@ -9,7 +9,7 @@ import { Speech } from '../../../types';
 
 
 @Component({
-  selector: 'app-speech-list-view',
+  selector: 'speech-list-view',
   templateUrl: './speech-list-view.component.html',
   styleUrls: ['./speech-list-view.component.css']
 })

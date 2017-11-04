@@ -1,4 +1,4 @@
-<ul class="nav nav-pills nav-fill">
+<ul class="nav nav-pills nav-fill flex-column flex-md-row">
   <li class="nav-item" *ngFor='let link of links'>
     <a class="nav-link" [routerLink]="[link.url]" routerLinkActive="active">{{link.text}}</a>
   </li>
