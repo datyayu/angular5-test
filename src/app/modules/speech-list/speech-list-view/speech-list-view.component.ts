@@ -17,15 +17,13 @@ export class SpeechListViewComponent implements OnInit {
   speeches$: Observable<Speech[]> = Observable.from([]);
   selectedSpeech?: Speech = undefined;
   alert?: string = '';
-
+  hasId: boolean = false;
 
   constructor(
     private speechStorageService: SpeechStorageService,
     private route: ActivatedRoute,
     private router: Router
-  ) {
-
-  }
+  ) {}
 
   ngOnInit() {
     this.speeches$ = this.route.paramMap
@@ -33,6 +31,7 @@ export class SpeechListViewComponent implements OnInit {
         const selectedId = params.get('id');
 
         if (selectedId) {
+          this.hasId = true;
           this.selectedSpeech = this.speechStorageService.getSpeechById(selectedId);
         }
 

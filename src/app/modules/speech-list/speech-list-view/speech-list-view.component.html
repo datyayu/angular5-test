@@ -31,7 +31,12 @@
       [selectedSpeech]="selectedSpeech && selectedSpeech.id"
     ></speech-list>
   </div>
+
   <div style="width: 65%;">
+    <h2 *ngIf="hasId && !selectedSpeech">
+      Speech not found.
+    </h2>
+
     <speech-form
       isNew
       [speech]="selectedSpeech"
